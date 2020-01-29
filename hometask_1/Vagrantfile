@@ -1,0 +1,40 @@
+Vagrant.configure("2") do |config|
+
+# config.vm.provider "virtualbox" do |v|
+#   #   vb.gui = true
+#   v.memory = "512"
+#   v.cpus = 1
+# end
+  config.vm.define "centos7" do |node1|
+  node1.vm.box ="centos/7"
+  node1.vm.hostname = 'node1'
+  node1.vm.network "forwarded_port", guest: 80, host: 8080
+  node1.vm.provider "virtualbox" do |v|
+    v.memory = "512"
+    v.cpus = 1
+  node1.vm.provision "shell", inline: <<-SHELL
+    yum install epel-release -y
+    yum update  -y
+    yum install httpd  -y
+    systemctl enable httpd.service
+    systemctl start httpd.service
+   SHELL
+end
+end
+
+  config.vm.define "ubuntu" do |node2|
+  node2.vm.box = "ubuntu/bionic64"
+  node2.vm.hostname = 'node2'
+  node2.vm.network "forwarded_port", guest: 80, host: 8081
+  node2. vm.provider "virtualbox" do |v|
+    v.memory = "512"
+    v.cpus = 1
+  node2.vm.provision "shell", inline: <<-SHELL
+     apt-get update -y
+     apt-get install -y apache2
+     systemctl start apache2.service && systemctl enable apache2.service
+   SHELL
+
+end
+end
+end
