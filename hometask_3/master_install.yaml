@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: yes
+  remote_user: root
+  become_method: su
+  gather_facts: False
+  vars_files:
+    - ./roles/vars/vars.yaml
+  roles:
+    - { role: install_package }
+    - { role: master_mysql }
+    - { role: confluence }

@@ -1,0 +1,19 @@
+---
+  confluence_server: "https://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-7.3.1-x64.bin"
+
+
+  master_login_mysql: "root"
+  master_host_mysql: "127.0.0.1"
+  master_port_mysql: "3306"
+  login_unix_socket: "/var/lib/mysql/mysql.sock"
+  old_set_root_password: "Ahch!oL2aqUi3Do"
+
+
+
+  master_new_root_password: "123456"
+
+  db_name: "CONFLUENCE"
+  db_user: "root"
+  db_passwd: "123456"
+
+
