@@ -27,7 +27,6 @@
     when: attlasian_files.stat.exists == false
     
   - name: Run script for start atlassian-confluence server
-    #command: "cd /home/ && ./atlassian-confluence-7.3.1-x64.bin -q -varfile response.varfile"
     become: true
     become_user: root
     shell: "cd /home/ && ./atlassian-confluence-7.3.1-x64.bin -q -varfile confluence-response.varfile"
@@ -37,7 +36,13 @@
     become: true
     become_user: root
     command: /etc/init.d/confluence restart
-
+ 
+  - name: task 5 show databases and connect to server mysql
+    command: "mysql -h localhost -uroot -p'123456' -e 'SHOW DATABASES;'"
+    register: show_db
+  - debug:
+      #var: show_db.stdout_lines 
+      msg: "mysql -h localhost -uroot -p'123456' -e 'SHOW DATABASES;' {{ show_db.stdout_lines }}"  
  # - name: Started confluence server /etc/init.d/confluence
  #   service:
  #     name: confluence
