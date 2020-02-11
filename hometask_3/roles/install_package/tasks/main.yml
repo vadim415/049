@@ -61,6 +61,7 @@
       #use_backend: dnf
     vars:
       packages:
+      - mysql-connector-java.noarch
       - mysql-community-server
       - mysql-connector-python.x86_64
       - python36-PyMySQL.noarch
