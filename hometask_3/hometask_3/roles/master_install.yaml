@@ -6,6 +6,6 @@
   vars_files:
     - ./vars/vars.yaml
   roles:
-   # - { role: install_package }
-   # - { role: master_mysql }
+    - { role: install_package }
+    - { role: master_mysql }
     - { role: confluence }

@@ -1,4 +1,4 @@
----
+--- 
   - name: copy confluence-response.varfile to  /home_dir
     copy:
       src: files/confluence-response.varfile
@@ -7,7 +7,7 @@
       #owner: confluence
       #group: confluence
       mode: 'u+rwx,g=rwx,o=r'
-
+  
 
   - name: check if rules file exists
     stat:
@@ -26,21 +26,20 @@
     #register: output_file
     when: attlasian_files.stat.exists == false
     
+
   - name: Run script for start atlassian-confluence server
     #command: "cd /home/ && ./atlassian-confluence-7.3.1-x64.bin -q -varfile response.varfile"
     become: true
     become_user: root
-    shell: "cd /home/ && ./atlassian-confluence-7.3.1-x64.bin -q -varfile confluence-response.varfile"
- 
+    shell: "cd /home/ && ./atlassian-confluence-7.3.1-x64.bin -q -varfile confluence-response.varfile" 
+
 
   - name: run scrip /etc/init.d/
     become: true
     become_user: root
     command: /etc/init.d/confluence restart
-
- # - name: Started confluence server /etc/init.d/confluence
- #   service:
- #     name: confluence
- #     state: started
- #     enabled: yes
+    #service:
+    #  name: confluence
+    #  state: started
+    #  enabled: yes
 
