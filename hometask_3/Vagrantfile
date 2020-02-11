@@ -11,13 +11,15 @@ Vagrant.configure("2") do |config|
    node1.vm.provider "virtualbox" do |v|
      v.memory = "512"
      v.cpus = 1
+     v.gui = false
+     v.name = "server_confluence_1"
+     #v.linked_clone = true
    end
    node1.vm.provision "ansible" do |ansible|
      #ansible.extra_vars = { ansible_ssh_user: 'vagrant' }
      ansible.verbose = "v"
      ansible.become = true
-     ansible.playbook = "roles/master_install.yaml"
-     #ansible.playbook = "roles/install.yaml"
+     ansible.playbook = "roles/role_master.yaml"
    end
   end
 end
